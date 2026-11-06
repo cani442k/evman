@@ -1,2 +1,3 @@
-# evman
-Experimental chroot manager to use different distros on one root filesystem and switch without rebooting
+# EveryManager (evman)
+Collection of python scripts to manage chroots very easily, aims to be a compatibility layer to use packages from different distros on one distro via chroots.
+
