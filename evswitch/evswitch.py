@@ -8,8 +8,7 @@ import sys
 parseargs = argparse.ArgumentParser(
     description="Experimental tool to automatically configure chroots",
     usage="evswitch [chroot]",
-    nargs=2,
-    epilog="Made with <3\nNever vibecoded.")
+    epilog="Made with <3, never vibecoded.")
 parseargs.add_argument(
     "chroot",
     nargs="?",
@@ -17,8 +16,11 @@ parseargs.add_argument(
 
 args = parseargs.parse_args()
 
-if os.geteuid() != 0:
-    print("ERROR: Fatal: evswitch needs root privileges to run. Please run with sudo/doas.", file=sys.stderr)
+if args.chroot is None:
+    parseargs.print_help()
+    sys.exit(0)
+
+if not os.path.isdir("/opt/evswitch/chroots/" + args.chroot):
+    print(f"ERROR: Fatal: chroot '{args.chroot}' does not exist!",file=sys.stderr)
     sys.exit(1)
-subprocess.run("mkdir -p /opt/evswitch/chroots", shell=True)
-#WIP
+#Work In Progress
